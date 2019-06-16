@@ -1,0 +1,93 @@
+<html>
+<head>
+<script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+<script>
+    function scb() {
+        $.getJSON("http://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy", {
+
+            "query" : [{
+                "code" : "ContentsCode",
+                "selection" : {
+                    "filter" : "item",
+                    "values" : ["BE0101N1"]
+                }
+            }, {
+                "code" : "Tid",
+                "selection" : {
+                    "filter" : "item",
+                    "values" : ["2010", "2011"]
+                }
+            }],
+            "response" : {
+                "format" : "json"
+            }
+
+        }).done(function(json) {
+            //            console.log("JSON Data: " + json.toSource());
+            $("#svar").html(json.toSource());
+        }).fail(function(jqxhr, textStatus, error) {
+            var err = textStatus + ", " + error;
+            $("#svar").html("Request Failed: " + err);
+        });
+    }
+
+    function scb2() {
+        $.post("http://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy", {
+
+            "query" : [{
+                "code" : "ContentsCode",
+                "selection" : {
+                    "filter" : "item",
+                    "values" : ["BE0101N1"]
+                }
+            }, {
+                "code" : "Tid",
+                "selection" : {
+                    "filter" : "item",
+                    "values" : ["2010", "2011"]
+                }
+            }],
+            "response" : {
+                "format" : "json"
+            }
+        }).done(function(data) {
+            alert("Data Loaded: " + data.toSource());
+        });
+    }
+
+    function scb3() {
+
+        $.ajax({
+            type : "POST",
+            url : "http://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy",
+
+            data : {
+                "query" : [{
+                    "code" : "ContentsCode",
+                    "selection" : {
+                        "filter" : "item",
+                        "values" : ["BE0101N1"]
+                    }
+                }, {
+                    "code" : "Tid",
+                    "selection" : {
+                        "filter" : "item",
+                        "values" : ["2010", "2011"]
+                    }
+                }],
+                "response" : {
+                    "format" : "json"
+                }
+            }
+
+        }).done(function(msg) {
+            alert("Data Saved: " + msg.toSource());
+        });
+
+    }
+
+</script>
+</head>
+<body onload="scb()">
+<div id="svar">. . .</div>
+</body>
