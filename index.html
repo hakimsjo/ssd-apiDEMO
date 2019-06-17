@@ -23,7 +23,7 @@
             }
 
         }).done(function(json) {
-            //            console.log("JSON Data: " + json.toSource());
+            console.log("JSON Data: " + json.toSource());
             $("#svar").html(json.toSource());
         }).fail(function(jqxhr, textStatus, error) {
             var err = textStatus + ", " + error;
@@ -88,6 +88,6 @@
 
 </script>
 </head>
-<body onload="scb()">
-<div id="svar">. . .</div>
+  <body onload="scb()">
+  <div id="svar">. . .</div>
 </body>
