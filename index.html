@@ -5,7 +5,7 @@
 
     <title>SSD-API-Demo</title>
 
-    <script type="text/javascript" src="jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
         function scbMeta() {
             $.getJSON("https://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy", {
@@ -63,7 +63,6 @@
             $.ajax({
                 type : "POST",
                 url : "https://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy",
-
                 data : {
                     "query" : [{
                         "code" : "ContentsCode",
@@ -89,6 +88,6 @@
         }
     </script>
 </head>
-<body onload="scbMeta()">
+<body onload="scbDataAjax()">
   <div id="result">. . .</div>
 </body>
