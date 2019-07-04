@@ -7,27 +7,8 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
-        function scbMeta() {
-            $.getJSON("https://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy", {
-
-                "query" : [{
-                    "code" : "ContentsCode",
-                    "selection" : {
-                        "filter" : "item",
-                        "values" : ["BE0101N1"]
-                    }
-                }, {
-                    "code" : "Tid",
-                    "selection" : {
-                        "filter" : "item",
-                        "values" : ["2010", "2011"]
-                    }
-                }],
-                "response" : {
-                    "format" : "json"
-                }
-
-            }).done(function(mydata) {
+        function scbMetaDataOfATable() {
+            $.getJSON("https://api.scb.se/OV0104/v1/doris/en/ssd/BE/BE0101/BE0101A/BefolkningNy").done(function(mydata) {
                 $("#result").html(JSON.stringify(mydata));
             }).fail(function(jqxhr, textStatus, error) {
                 var err = textStatus + ", " + error;
@@ -35,9 +16,9 @@
             });
         }
 
-        function scbDataPost() {
-            $.post("https://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy", {
-
+        function scbDataGetDataPointsWithPost() {
+              $.post("https://api.scb.se/OV0104/v1/doris/en/ssd/START/BE/BE0101/BE0101A/BefolkningNy", JSON.stringify({
+                
                 "query" : [{
                     "code" : "ContentsCode",
                     "selection" : {
@@ -54,40 +35,12 @@
                 "response" : {
                     "format" : "json"
                 }
-            }).done(function(mydata) {
-                $("#result").html(JSON.stringify(mydata));
-            });
-        }
-
-        function scbDataAjax() {
-            $.ajax({
-                type : "POST",
-                url : "https://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy",
-                data : {
-                    "query" : [{
-                        "code" : "ContentsCode",
-                        "selection" : {
-                            "filter" : "item",
-                            "values" : ["BE0101N1"]
-                        }
-                    }, {
-                        "code" : "Tid",
-                        "selection" : {
-                            "filter" : "item",
-                            "values" : ["2010", "2011"]
-                        }
-                    }],
-                    "response" : {
-                        "format" : "json"
-                    }
-                }
-
-            }).done(function(mydata) {
+            }),function(mydata){
                 $("#result").html(JSON.stringify(mydata));
             });
         }
     </script>
 </head>
-<body onload="scbMeta()">
+<body onload="scbMetaDataOfATable()">
   <div id="result">. . .</div>
 </body>
