@@ -7,7 +7,7 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
-        function scbMetaDataOfATable() {
+        function scbGetMetaDataOfATable() {
             $.getJSON("https://api.scb.se/OV0104/v1/doris/en/ssd/BE/BE0101/BE0101A/BefolkningNy").done(function(mydata) {
                 $("#result").html(JSON.stringify(mydata));
             }).fail(function(jqxhr, textStatus, error) {
@@ -16,7 +16,7 @@
             });
         }
 
-        function scbDataGetDataPointsWithPost() {
+        function scbGetDataPointsWithPost() {
               $.post("https://api.scb.se/OV0104/v1/doris/en/ssd/START/BE/BE0101/BE0101A/BefolkningNy", JSON.stringify({
                 
                 "query" : [{
@@ -41,6 +41,6 @@
         }
     </script>
 </head>
-<body onload="scbMetaDataOfATable()">
+<body onload="scbGetMetaDataOfATable()">
   <div id="result">. . .</div>
 </body>
